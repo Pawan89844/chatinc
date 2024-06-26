@@ -1,3 +1,4 @@
+import 'package:chatinc/module/home/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 class ChatInc extends StatelessWidget {
@@ -5,8 +6,10 @@ class ChatInc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: null,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(useMaterial3: true),
+      home: const HomeView(),
     );
   }
 }
