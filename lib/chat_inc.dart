@@ -8,7 +8,9 @@ class ChatInc extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(useMaterial3: true),
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xFFF0F1F3),
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFFF0F1F3))),
       home: const HomeView(),
     );
   }
