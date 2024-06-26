@@ -7,7 +7,7 @@ class AppBoldText extends StatelessWidget {
   final FontWeight? fontWeight;
   final double? fontSize;
   const AppBoldText(this.data,
-      {super.key, this.fontWeight = FontWeight.bold, this.fontSize = 18.0});
+      {super.key, this.fontWeight = FontWeight.bold, this.fontSize = 22.0});
 
   @override
   Widget build(BuildContext context) {
