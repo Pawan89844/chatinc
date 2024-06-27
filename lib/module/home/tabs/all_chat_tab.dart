@@ -1,4 +1,5 @@
 import 'package:chatinc/dummy/chats_list.dart';
+import 'package:chatinc/module/chat/view/chat_view.dart';
 import 'package:chatinc/module/home/model/chats_model.dart';
 import 'package:chatinc/theme/app_colors.dart';
 import 'package:chatinc/theme/app_shapes.dart';
@@ -50,6 +51,11 @@ class AllChatTab extends StatelessWidget {
                         (context, i) {
                           ChatsModel chats = ChatsList.pinnedList[i];
                           return ListTile(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ChatView(),
+                                )),
                             leading: const CircleAvatar(
                               backgroundColor: AppColors.buttonColor,
                               child: Icon(CupertinoIcons.person,
@@ -92,6 +98,11 @@ class AllChatTab extends StatelessWidget {
                       (context, i) {
                         ChatsModel chats = ChatsList.chatsList[i];
                         return ListTile(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ChatView(),
+                              )),
                           leading: const CircleAvatar(
                             backgroundColor: AppColors.buttonColor,
                             child: Icon(CupertinoIcons.person,
