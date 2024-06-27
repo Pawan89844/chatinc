@@ -1,4 +1,5 @@
 import 'package:chatinc/dummy/chat_list.dart';
+import 'package:chatinc/module/profile/view/profile_view.dart';
 import 'package:chatinc/theme/app_colors.dart';
 import 'package:chatinc/widgets/app_bold_text.dart';
 import 'package:chatinc/widgets/app_text.dart';
@@ -14,11 +15,17 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.all(8.0),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             backgroundColor: AppColors.buttonColor,
-            child: Icon(Icons.person, color: Colors.white),
+            child: IconButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileView(),
+                    )),
+                icon: const Icon(Icons.person, color: Colors.white)),
           ),
         ),
         title: Column(
