@@ -9,6 +9,8 @@ import 'package:chatinc/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../profile/view/profile_view.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -35,14 +37,17 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.all(5.0),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             backgroundColor: AppColors.buttonColor,
-            child: Icon(
-              Icons.person,
-              color: Colors.white,
-            ),
+            child: IconButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileView(),
+                    )),
+                icon: const Icon(Icons.person, color: Colors.white)),
           ),
         ),
         title: const Column(
