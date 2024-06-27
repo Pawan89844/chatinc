@@ -6,8 +6,12 @@ class AppBoldText extends StatelessWidget {
   final String data;
   final FontWeight? fontWeight;
   final double? fontSize;
+  final Color? color;
   const AppBoldText(this.data,
-      {super.key, this.fontWeight = FontWeight.bold, this.fontSize = 22.0});
+      {super.key,
+      this.fontWeight = FontWeight.bold,
+      this.fontSize = 22.0,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +19,7 @@ class AppBoldText extends StatelessWidget {
         style: TextStyle(
             fontFamily: AppString.fontFamily,
             fontWeight: fontWeight,
-            fontSize: fontSize));
+            fontSize: fontSize,
+            color: color));
   }
 }

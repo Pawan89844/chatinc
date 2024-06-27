@@ -1,4 +1,9 @@
 import 'package:chatinc/constants/app_strings.dart';
+import 'package:chatinc/module/home/tabs/all_chat_tab.dart';
+import 'package:chatinc/module/home/tabs/archieve_chats_tab.dart';
+import 'package:chatinc/module/home/tabs/family_chat_tab.dart';
+import 'package:chatinc/module/home/tabs/office_chats_tab.dart';
+import 'package:chatinc/theme/app_colors.dart';
 import 'package:chatinc/widgets/app_bold_text.dart';
 import 'package:chatinc/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,7 +38,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         leading: const Padding(
           padding: EdgeInsets.all(5.0),
           child: CircleAvatar(
-            backgroundColor: Color(0xFF3E66FB),
+            backgroundColor: AppColors.buttonColor,
             child: Icon(
               Icons.person,
               color: Colors.white,
@@ -86,8 +91,8 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                   child: ElevatedButton.icon(
                       onPressed: () {},
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              const Color(0xFF3E66FB))),
+                          backgroundColor:
+                              MaterialStateProperty.all(AppColors.buttonColor)),
                       icon: const Icon(CupertinoIcons.bubble_middle_bottom,
                           color: Colors.white),
                       label: const AppText('New Chat', color: Colors.white)),
@@ -131,29 +136,10 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                           controller: _tabController,
                           physics: const BouncingScrollPhysics(),
                           children: const [
-                            Card(
-                              margin: EdgeInsets.only(top: 12.0),
-                              surfaceTintColor: Colors.white,
-                              elevation: 8.0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(14.0),
-                                topLeft: Radius.circular(14.0),
-                              )),
-                              child: Center(child: Text('All tab')),
-                            ),
-                            Card(
-                              margin: EdgeInsets.only(top: 12.0),
-                              child: Center(child: Text('Office tab')),
-                            ),
-                            Card(
-                              margin: EdgeInsets.only(top: 12.0),
-                              child: Center(child: Text('Family tab')),
-                            ),
-                            Card(
-                              margin: EdgeInsets.only(top: 12.0),
-                              child: Center(child: Text('Archive tab')),
-                            ),
+                            AllChatTab(),
+                            OfficeChatsTab(),
+                            FamilyChatsTab(),
+                            ArchieveChatsTab(),
                           ]),
                     )
                   ],
