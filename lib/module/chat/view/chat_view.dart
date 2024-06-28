@@ -61,7 +61,8 @@ class ChatView extends StatelessWidget {
           Expanded(
             child: Card(
               margin: const EdgeInsets.symmetric(horizontal: 8.0),
-              // surfaceTintColor: const Color(0xFFFBFBFC),
+              surfaceTintColor: const Color(0xFFF9F9FA),
+              elevation: 0.0,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(22.0)),
               child: SingleChildScrollView(
@@ -97,46 +98,44 @@ class ChatView extends StatelessWidget {
                     ...ChatList.chats.map((chat) => Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 3.0),
-                          child: CustomPaint(
-                            painter: ChatBubble(
-                                color: chat.areYou
-                                    ? AppColors.buttonColor
-                                    : Colors.white,
-                                alignment: chat.areYou
-                                    ? Alignment.centerRight
-                                    : Alignment.centerLeft),
-                            child: Container(
-                              alignment: chat.areYou
-                                  ? Alignment.centerRight
-                                  : Alignment.centerLeft,
-                              color: chat.areYou
-                                  ? AppColors.buttonColor
-                                  : Colors.white,
-                              // surfaceTintColor:
-                              //     chat.areYou ? null : Colors.white,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: chat.areYou
-                                      ? CrossAxisAlignment.end
-                                      : CrossAxisAlignment.start,
-                                  children: [
-                                    AppText(chat.message,
-                                        color:
-                                            chat.areYou ? Colors.white : null),
-                                    if (chat.timeStamp != null) ...[
-                                      Align(
-                                          alignment: chat.areYou
-                                              ? Alignment.centerRight
-                                              : Alignment.centerLeft,
-                                          child: AppText(
-                                            chat.timeStamp.toString(),
+                          child: Align(
+                            alignment: chat.areYou
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: IntrinsicWidth(
+                              child: CustomPaint(
+                                painter: BubblePainter(chat.areYou),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(14.0),
+                                  child: Column(
+                                    crossAxisAlignment: chat.areYou
+                                        ? CrossAxisAlignment.end
+                                        : CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width: chat.message.length > 30
+                                            ? 200.0
+                                            : null,
+                                        child: AppText(chat.message,
                                             color: chat.areYou
                                                 ? Colors.white
-                                                : null,
-                                          )),
-                                    ]
-                                  ],
+                                                : null),
+                                      ),
+                                      if (chat.timeStamp != null) ...[
+                                        Align(
+                                            alignment: chat.areYou
+                                                ? Alignment.centerRight
+                                                : Alignment.centerLeft,
+                                            child: AppText(
+                                              chat.timeStamp.toString(),
+                                              color: chat.areYou
+                                                  ? Colors.white
+                                                  : null,
+                                            )),
+                                      ]
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -151,7 +150,7 @@ class ChatView extends StatelessWidget {
           SizedBox(
             height: 75.0,
             child: Card(
-              elevation: 5.0,
+              elevation: 0.0,
               margin: const EdgeInsets.symmetric(horizontal: 14.0),
               surfaceTintColor: Colors.white,
               shape: RoundedRectangleBorder(
@@ -185,9 +184,13 @@ class ChatView extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 15.0)
+          const SafeArea(bottom: true, child: SizedBox(height: 10.0))
         ],
       ),
     );
   }
 }
+
+// color: chat.areYou
+//                                     ? AppColors.buttonColor
+//                                     : Colors.white,
