@@ -6,7 +6,6 @@ import 'package:chatinc/widgets/app_text.dart';
 import 'package:chatinc/widgets/chat_bubble.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({super.key});
@@ -15,6 +14,7 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
