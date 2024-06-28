@@ -6,7 +6,6 @@ import 'package:chatinc/theme/app_shapes.dart';
 import 'package:chatinc/widgets/app_bold_text.dart';
 import 'package:chatinc/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -45,13 +44,12 @@ class _ProfileViewState extends State<ProfileView>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: color,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.light));
-    print('Selected Index: $_selectedTab');
-    return Scaffold(
-      body: SafeArea(
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //     statusBarColor: color,
+    //     statusBarIconBrightness: Brightness.light,
+    //     statusBarBrightness: Brightness.light));
+    return Material(
+      child: SafeArea(
           child: SingleChildScrollView(
         child: Column(
           children: [
@@ -150,7 +148,9 @@ class _ProfileViewState extends State<ProfileView>
             ),
             const SizedBox(height: 20.0),
             SizedBox(
-              height: _selectedTab == 2 ? 400.0 : 304.0,
+              height: _selectedTab == 2
+                  ? MediaQuery.of(context).size.height * .7
+                  : 304.0,
               child: Card(
                 surfaceTintColor: const Color(0xFFF9F9FA),
                 shape: AppShape.profileOverviewCardShape,
