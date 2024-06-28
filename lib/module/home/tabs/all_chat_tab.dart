@@ -14,7 +14,7 @@ class AllChatTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(top: 12.0),
+      margin: const EdgeInsets.only(top: 15.0),
       surfaceTintColor: Colors.white,
       elevation: 8.0,
       shape: AppShape.chatsCardShape,
@@ -22,62 +22,57 @@ class AllChatTab extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            ...[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 5.0),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            CupertinoIcons.pin,
-                            size: 14.0,
-                          ),
-                          const SizedBox(width: 5.0),
-                          AppBoldText('Pinned',
-                              fontSize: 14.0, color: Colors.grey.shade600),
-                        ],
-                      ),
-                    ),
-                    ListView.custom(
-                      shrinkWrap: true,
-                      primary: false,
-                      physics: const NeverScrollableScrollPhysics(),
-                      childrenDelegate: SliverChildBuilderDelegate(
-                        childCount: ChatsList.pinnedList.length,
-                        (context, i) {
-                          ChatsModel chats = ChatsList.pinnedList[i];
-                          return ListTile(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const ChatView(),
-                                )),
-                            leading: const CircleAvatar(
-                              backgroundColor: AppColors.buttonColor,
-                              child: Icon(CupertinoIcons.person,
-                                  color: Colors.white),
-                            ),
-                            title: AppBoldText(chats.name, fontSize: 18.0),
-                            subtitle:
-                                AppText(chats.lastMsg, color: Colors.black38),
-                            trailing: AppText(
-                              chats.lastMsgTime,
-                              color: Colors.black38,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
             Padding(
               padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 5.0),
+                    child: Row(
+                      children: [
+                        const Icon(CupertinoIcons.pin, size: 14.0),
+                        const SizedBox(width: 5.0),
+                        AppBoldText('Pinned',
+                            fontSize: 14.0, color: Colors.grey.shade600),
+                      ],
+                    ),
+                  ),
+                  ListView.custom(
+                    shrinkWrap: true,
+                    primary: false,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childrenDelegate: SliverChildBuilderDelegate(
+                      childCount: ChatsList.pinnedList.length,
+                      (context, i) {
+                        ChatsModel chats = ChatsList.pinnedList[i];
+                        return ListTile(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ChatView(),
+                              )),
+                          leading: const CircleAvatar(
+                            backgroundColor: AppColors.buttonColor,
+                            child: Icon(CupertinoIcons.person,
+                                color: Colors.white),
+                          ),
+                          title: AppBoldText(chats.name, fontSize: 18.0),
+                          subtitle:
+                              AppText(chats.lastMsg, color: Colors.black38),
+                          trailing: AppText(
+                            chats.lastMsgTime,
+                            color: Colors.black38,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
                 children: [
                   Padding(
