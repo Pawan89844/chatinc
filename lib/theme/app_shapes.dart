@@ -1,3 +1,4 @@
+import 'package:chatinc/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppShape {
@@ -11,4 +12,8 @@ class AppShape {
     topRight: Radius.circular(18.0),
     topLeft: Radius.circular(18.0),
   ));
+
+  static const kInputFieldBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(14.0)),
+      borderSide: BorderSide(color: Colors.black12));
 }

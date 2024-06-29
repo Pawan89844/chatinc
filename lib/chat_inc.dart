@@ -1,3 +1,4 @@
+import 'package:chatinc/module/auth/view/login_view.dart';
 import 'package:chatinc/module/home/view/home_view.dart';
 import 'package:chatinc/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class ChatInc extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: AppColors.backgroundColor,
           appBarTheme: const AppBarTheme(backgroundColor: Color(0xFFF0F1F3))),
-      home: const HomeView(),
+      home: LoginView(),
     );
   }
 }
