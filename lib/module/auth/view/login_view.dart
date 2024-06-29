@@ -1,11 +1,11 @@
-import 'package:chatinc/module/auth/components/otp_component.dart';
+import 'package:chatinc/module/auth/view/otp_view.dart';
 import 'package:chatinc/theme/app_shapes.dart';
 import 'package:chatinc/widgets/app_bold_text.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
-  final List<TextEditingController> controller = <TextEditingController>[];
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,30 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   children: [
                     TextField(
+                      controller: _controller,
                       keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
+                      onChanged: (value) {
+                        if (_controller.text.length >= 10) {
+                          Future.delayed(
+                            const Duration(seconds: 3),
+                            () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const OTPView(),
+                                )),
+                          );
+                        }
+                      },
+                      decoration: const InputDecoration(
                         labelText: 'Enter your Phone No.',
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon:
-                                  const Icon(Icons.navigate_next, size: 30.0)),
-                        ),
+
+                        // suffixIcon: Padding(
+                        //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        //   child: IconButton(
+                        //       onPressed: () {},
+                        //       icon:
+                        //           const Icon(Icons.navigate_next, size: 30.0)),
+                        // ),
                         isDense: true,
                         border: AppShape.kInputFieldBorder,
                       ),
@@ -43,9 +57,6 @@ class LoginView extends StatelessWidget {
                   ],
                 ),
               ),
-              OTPComponent(
-                maxLength: 4,
-              )
             ],
           ),
         ),
