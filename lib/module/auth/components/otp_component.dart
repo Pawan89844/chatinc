@@ -11,9 +11,20 @@ class OTPComponent extends StatefulWidget {
 }
 
 class _OTPComponentState extends State<OTPComponent> {
+  late List<FocusNode> node;
+
   @override
   void initState() {
     super.initState();
+    List<FocusNode> genNode =
+        List.generate(widget.maxLength, (i) => FocusNode());
+    node = genNode;
+  }
+
+  void _logic(String value, int i) {
+    if (value.isNotEmpty) {
+      node[i].nextFocus();
+    }
   }
 
   @override
@@ -24,12 +35,12 @@ class _OTPComponentState extends State<OTPComponent> {
           widget.maxLength,
           (i) => SizedBox(
                 width: 70.0,
-                // height: 50.0,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     inputFormatters: [LengthLimitingTextInputFormatter(1)],
-                    onChanged: (value) {},
+                    focusNode: node[i],
+                    onChanged: (value) => _logic(value, i),
                     decoration: const InputDecoration(
                         isDense: true,
                         alignLabelWithHint: true,
