@@ -3,6 +3,7 @@ import 'package:chatinc/module/home/tabs/all_chat_tab.dart';
 import 'package:chatinc/module/home/tabs/archieve_chats_tab.dart';
 import 'package:chatinc/module/home/tabs/family_chat_tab.dart';
 import 'package:chatinc/module/home/tabs/office_chats_tab.dart';
+import 'package:chatinc/module/home/view/new_chat_view.dart';
 import 'package:chatinc/theme/app_colors.dart';
 import 'package:chatinc/widgets/app_bold_text.dart';
 import 'package:chatinc/widgets/app_text.dart';
@@ -94,7 +95,11 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                 Container(
                   margin: const EdgeInsets.only(right: 14.0),
                   child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NewChatView(),
+                          )),
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(AppColors.buttonColor)),
