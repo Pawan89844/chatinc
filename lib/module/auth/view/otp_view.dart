@@ -1,8 +1,10 @@
 import 'package:chatinc/module/auth/components/otp_component.dart';
+import 'package:chatinc/module/auth/view%20model/auth_view_model.dart';
 import 'package:chatinc/module/auth/view/signup_view.dart';
 import 'package:chatinc/theme/app_colors.dart';
 import 'package:chatinc/widgets/app_text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../widgets/app_bold_text.dart';
 import '../../../widgets/app_elevated_button.dart';
@@ -13,7 +15,9 @@ class OTPView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var query = MediaQuery.of(context);
+    var viewModel = Provider.of<AuthViewModel>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -28,16 +32,13 @@ class OTPView extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   children: [
-                    const OTPComponent(maxLength: 4),
+                    const OTPComponent(maxLength: 6),
                     const SizedBox(height: 14.0),
                     SizedBox(
                       width: query.size.width * .6,
                       child: AppElevatedButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpView(),
-                            )),
+                        onPressed: () =>
+                            viewModel.verifyOTP(context, viewModel.otp),
                         text: 'VERIFY',
                       ),
                     )
