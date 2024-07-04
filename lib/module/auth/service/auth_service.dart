@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:chatinc/module/auth/view%20model/auth_view_model.dart';
 import 'package:chatinc/module/auth/view/otp_view.dart';
 import 'package:chatinc/module/auth/view/signup_view.dart';
@@ -9,6 +11,8 @@ import 'package:provider/provider.dart';
 abstract class Authentication {
   void sendOTP(BuildContext context,
       {String? phoneNumber, String? verificationCode});
+
+  void verifyOTP(BuildContext context, String otp);
 
   void dispose();
 }
@@ -39,11 +43,11 @@ class AuthService implements Authentication {
 
   void _verificationCompleted(PhoneAuthCredential phoneAuthCredential,
       String? verificationCode, BuildContext context) {
-    if (verificationCode == phoneAuthCredential.smsCode &&
-        _verificationId == phoneAuthCredential.verificationId) {
-      // print('Verification: $_verificationId, $verificationCode');
-      Navigator.pushReplacement(context, _otpPage(child: const SignUpView()));
-    }
+    // if (verificationCode == phoneAuthCredential.smsCode &&
+    //     _verificationId == phoneAuthCredential.verificationId) {
+    //   // print('Verification: $_verificationId, $verificationCode');
+    //   Navigator.pushReplacement(context, _otpPage(child: const SignUpView()));
+    // }
   }
 
   void _verificationFailed(FirebaseAuthException error) {
@@ -75,5 +79,15 @@ class AuthService implements Authentication {
   @override
   void dispose() {
     FlutterMemoryAllocations.instance.dispatchObjectDisposed(object: this);
+  }
+
+  @override
+  void verifyOTP(BuildContext context, String otp) async {
+    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
+        verificationId: _verificationId, smsCode: otp);
+    UserCredential user = await _auth.signInWithCredential(phoneAuthCredential);
+    if (user.user?.uid != null) {
+      Navigator.pushReplacement(context, _otpPage(child: const SignUpView()));
+    }
   }
 }

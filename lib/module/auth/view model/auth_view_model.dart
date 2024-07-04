@@ -13,7 +13,12 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   void setOTP(String value) {
-    otp = value;
+    otp += value;
+    print('Value: $value');
     notifyListeners();
+  }
+
+  void verifyOTP(BuildContext context, String otp) {
+    _service.verifyOTP(context, otp);
   }
 }

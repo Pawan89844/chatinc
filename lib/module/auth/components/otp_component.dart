@@ -23,9 +23,10 @@ class _OTPComponentState extends State<OTPComponent> {
     node = genNode;
   }
 
-  void _logic(String value, int i) {
+  void _logic(String value, int i, void setOTP) {
     if (value.isNotEmpty) {
       node[i].nextFocus();
+      setOTP;
     }
   }
 
@@ -46,8 +47,9 @@ class _OTPComponentState extends State<OTPComponent> {
                   child: TextField(
                     inputFormatters: [LengthLimitingTextInputFormatter(1)],
                     focusNode: node[i],
-                    onSubmitted: (value) => viewmodel.setOTP(value),
-                    onChanged: (value) => _logic(value, i),
+                    // onSubmitted: (value) => viewmodel.setOTP(value),
+                    onChanged: (value) =>
+                        _logic(value, i, viewmodel.setOTP(value)),
                     decoration: const InputDecoration(
                         isDense: true,
                         alignLabelWithHint: true,

@@ -37,8 +37,8 @@ class OTPView extends StatelessWidget {
                     SizedBox(
                       width: query.size.width * .6,
                       child: AppElevatedButton(
-                        onPressed: () => viewModel.sendOTP(context,
-                            verificationCode: viewModel.otp),
+                        onPressed: () =>
+                            viewModel.verifyOTP(context, viewModel.otp),
                         text: 'VERIFY',
                       ),
                     )
