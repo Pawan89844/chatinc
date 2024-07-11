@@ -3,12 +3,14 @@ import 'package:chatinc/module/home/tabs/all_chat_tab.dart';
 import 'package:chatinc/module/home/tabs/archieve_chats_tab.dart';
 import 'package:chatinc/module/home/tabs/family_chat_tab.dart';
 import 'package:chatinc/module/home/tabs/office_chats_tab.dart';
+import 'package:chatinc/module/home/view%20model/contacts_view_model.dart';
 import 'package:chatinc/module/home/view/new_chat_view.dart';
 import 'package:chatinc/theme/app_colors.dart';
 import 'package:chatinc/widgets/app_bold_text.dart';
 import 'package:chatinc/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../profile/view/profile_view.dart';
 
@@ -98,7 +100,10 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                       onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const NewChatView(),
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (context) => ContactViewModel(),
+                              child: const NewChatView(),
+                            ),
                           )),
                       style: ButtonStyle(
                           backgroundColor:
